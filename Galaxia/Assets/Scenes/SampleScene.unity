@@ -19600,6 +19600,7 @@ GameObject:
   - component: {fileID: 1092375755}
   - component: {fileID: 1092375754}
   - component: {fileID: 1092375753}
+  - component: {fileID: 1092375756}
   m_Layer: 0
   m_Name: Galaxy
   m_TagString: Untagged
@@ -24429,6 +24430,20 @@ Transform:
   - {fileID: 711488841}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1092375756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092375752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 539a97ee06b084f43b5ecea0b090e641, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  speedChangeAmount: 0.1
 --- !u!1 &1382356967
 GameObject:
   m_ObjectHideFlags: 0
@@ -29339,7 +29354,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
