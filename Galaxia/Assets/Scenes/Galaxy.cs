@@ -1,9 +1,10 @@
 using UnityEngine;
 
-public class Galaxy : MonoBehaviour
+public class GalaxyController : MonoBehaviour
 {
     public float speed = 1f;  // Velocidade de simulação inicial
     public float speedChangeAmount = 0.1f;  // Quanto a velocidade vai mudar por vez
+    public bool rotateToRight = true;  // Se true, gira para a direita (horário), se false, gira para a esquerda (anti-horário)
     private ParticleSystem[] particleSystems;
 
     void Start()
@@ -14,7 +15,7 @@ public class Galaxy : MonoBehaviour
 
     void Update()
     {
-        // Aumenta a velocidade com a tecla ↑
+        // Aumenta ou diminui a velocidade com as teclas ↑ e ↓
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             speed += speedChangeAmount;
@@ -22,13 +23,18 @@ public class Galaxy : MonoBehaviour
             Debug.Log("Velocidade Aumentada: " + speed);
         }
 
-        // Diminui a velocidade com a tecla ↓
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             speed = Mathf.Max(0, speed - speedChangeAmount);  // Impede que a velocidade fique negativa
             UpdateParticleSystemsSpeed();
             Debug.Log("Velocidade Diminuída: " + speed);
         }
+
+        // Determina a direção da rotação (horária ou anti-horária) com base no valor de rotateToRight
+        float rotationDirection = rotateToRight ? 1f : -1f;
+
+        // Aplica a rotação no eixo Z (geralmente usado para rotação 2D)
+        transform.Rotate(0, 0, speed * rotationDirection * Time.deltaTime);
     }
 
     // Atualiza a velocidade de simulação de todos os sistemas de partículas
@@ -36,8 +42,8 @@ public class Galaxy : MonoBehaviour
     {
         foreach (ParticleSystem ps in particleSystems)
         {
-            var mainModule = ps.main;  // Acessa o módulo principal de cada ParticleSystem
-            mainModule.simulationSpeed = speed;  // Altera a velocidade de simulação
+            var mainModule = ps.main;
+            mainModule.simulationSpeed = speed;
         }
     }
 }
